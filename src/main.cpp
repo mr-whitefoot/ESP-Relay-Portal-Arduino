@@ -39,7 +39,7 @@ struct Timer
   byte seconds;
 };
 
-struct Time{
+struct Timers{
   Timer timer[TIMER_COUNT];
 };
 
@@ -70,7 +70,7 @@ enum mqtt : size_t {
 
 struct Data {
   //Data
-  Time time;  
+  Timers timers;  
 };
 
 

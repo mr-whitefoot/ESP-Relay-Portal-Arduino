@@ -59,15 +59,15 @@ void timerHandle(){
   int seconds = timeClient.getSeconds();
 
   for(int i=0; i<TIMER_COUNT; i++){
-    if( data.time.timer[i].enable  == true &&
-        data.time.timer[i].hours   == hours &&
-        data.time.timer[i].minutes == minutes &&
-        data.time.timer[i].seconds == seconds)
+    if( data.timers.timer[i].enable  == true &&
+        data.timers.timer[i].hours   == hours &&
+        data.timers.timer[i].minutes == minutes &&
+        data.timers.timer[i].seconds == seconds)
       {  
         println("Timer "+String(i)+" activating");
-        if(data.time.timer[i].action == 0){Relay1.SetState(true);}
-        if(data.time.timer[i].action == 1){Relay1.SetState(false);}
-        if(data.time.timer[i].action == 2){Relay1.ResetState();}
+        if(data.timers.timer[i].action == 0){Relay1.SetState(true);}
+        if(data.timers.timer[i].action == 1){Relay1.SetState(false);}
+        if(data.timers.timer[i].action == 2){Relay1.ResetState();}
       }
   }
 }
@@ -98,6 +98,7 @@ void dbSetup(){
   db.init(keys::relayState, false);
   db.init(keys::theme, LIGHT_THEME);
   db.init(keys::timezone, 14);
+  db.init(keys::timer, data.timers);
 
   db.init(mqtt::topicPrefix, "homeassistant");
   db.init(mqtt::serverPort, 1883 );

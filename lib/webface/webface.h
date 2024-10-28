@@ -1,24 +1,24 @@
 void createTimerUi(const int index){
   GP.BLOCK_TAB_BEGIN("Timer");
     GP.BOX_BEGIN(GP_EDGES);
-      GP.LABEL("Timer"); GP.SWITCH("timerEnable"+String(index), data.time.timer[index].enable);
+      GP.LABEL("Timer"); GP.SWITCH("timerEnable"+String(index), data.timers.timer[index].enable);
     GP.BOX_END();
-    GP.SELECT("timerHours"+String(index),"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23", data.time.timer[index].hours);
-    GP.SELECT("timerMinutes"+String(index),"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",data.time.timer[index].minutes);
-    GP.SELECT("timerSeconds"+String(index),"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",data.time.timer[index].seconds);
+    GP.SELECT("timerHours"+String(index),"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23", data.timers.timer[index].hours);
+    GP.SELECT("timerMinutes"+String(index),"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",data.timers.timer[index].minutes);
+    GP.SELECT("timerSeconds"+String(index),"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",data.timers.timer[index].seconds);
     GP.BOX_BEGIN(GP_EDGES);
-      GP.LABEL("Action"); GP.SELECT("timerAction"+String(index), "On,Off,Toggle", data.time.timer[index].action);
+      GP.LABEL("Action"); GP.SELECT("timerAction"+String(index), "On,Off,Toggle", data.timers.timer[index].action);
     GP.BOX_END();
   GP.BLOCK_END();
 }
 
 
 void copyTimer( const int index){
-   portal.copyBool("timerEnable"+String(index),data.time.timer[index].enable);
-   portal.copyInt("timerAction"+String(index),data.time.timer[index].action);
-   portal.copyInt("timerHours"+String(index),data.time.timer[index].hours);
-   portal.copyInt("timerMinutes"+String(index),data.time.timer[index].minutes);
-   portal.copyInt("timerSeconds"+String(index),data.time.timer[index].seconds);
+   portal.copyBool("timerEnable"+String(index),data.timers.timer[index].enable);
+   portal.copyInt("timerAction"+String(index),data.timers.timer[index].action);
+   portal.copyInt("timerHours"+String(index),data.timers.timer[index].hours);
+   portal.copyInt("timerMinutes"+String(index),data.timers.timer[index].minutes);
+   portal.copyInt("timerSeconds"+String(index),data.timers.timer[index].seconds);
 }
 
 
@@ -309,7 +309,7 @@ void portalCheckForm(){
       //Timers
     } else if(portal.form(form.timers)){
         for(int i=0; i < TIMER_COUNT; i++){ copyTimer(i); };
-        db[keys::timer] = data.time;
+        db[keys::timer] = data.timers;
         db.update();
     }
   }
