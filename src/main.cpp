@@ -15,8 +15,8 @@
 //#define DEBUG_DB
 
 
-String sw_version = "3.0.6";
-String release_date = "23.10.2024";
+String sw_version = "3.0.7";
+String release_date = "01.11.2024";
 
 GyverDBFile db(&LittleFS, "/data.db");
 
@@ -70,7 +70,8 @@ enum mqtt : size_t {
 
 struct Data {
   //Data
-  Timers timers;  
+  Timers timers; 
+  Timer timer; 
 };
 
 

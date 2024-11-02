@@ -83,6 +83,11 @@ void portalStart(){
   portal.enableOTA();
 }
 
+void timerRead(){
+  for(int i=0; i<TIMER_COUNT; i++){
+    //data.timers = db.get(keys::timer);
+  }
+}
 
 void dbSetup(){
   Serial.println("-----------------------------");
@@ -98,7 +103,12 @@ void dbSetup(){
   db.init(keys::relayState, false);
   db.init(keys::theme, LIGHT_THEME);
   db.init(keys::timezone, 14);
-  db.init(keys::timer, data.timers);
+ // db.init(keys::timer, data.timers);
+  //db.init(keys::timer, data.timer);
+
+
+  //data.timer = db[keys::timer];
+
 
   db.init(mqtt::topicPrefix, "homeassistant");
   db.init(mqtt::serverPort, 1883 );
